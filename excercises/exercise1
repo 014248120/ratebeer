@@ -1,0 +1,16 @@
+Brewery.create name:"BrewDog", year:2007
+b=_
+b.beers.create name:"Punk IPA", style:"IPA"
+b.beers.create name:"Nanny State", style:"lowalchohol"
+b=_
+b.ratings.create score:10
+b.ratings.create score:40
+b.ratings.create score:50
+b.ratings.create score:5
+brew=Brewery.last
+b = brew.beers.last
+b.ratings.create score:40
+b.ratings.create score:40
+b.ratings.create score:50
+b.ratings.create score:30
+

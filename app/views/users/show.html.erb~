@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p> 
+  <% if @user.beer_club %>
+    member of <%= link_to @user.beer_club, @user.beer_club %>
+  <% end %>
+</p>
+
+<p>
+  <% if @user.ratings.empty? %>
+    <%= @user.username %> has not given any ratings!
+  <% else %>
+    Has <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %>
+</p>
+
+    <h2>List of ratings</h2>
+
+    <ul>
+      <% @user.ratings.each do |rating| %>
+        <li> <%= rating %> 
+        <% if current_user && current_user.id == @user.id %> 
+          <%= link_to 'delete', rating_path(rating.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<% if current_user && current_user.id == @user.id %> 
+  <%= link_to 'Edit', edit_user_path(@user) %>
+  <%= link_to 'Delete user', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
