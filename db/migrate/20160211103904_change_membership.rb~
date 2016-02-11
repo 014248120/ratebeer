@@ -1,0 +1,4 @@
+class ChangeMembership < ActiveRecord::Migration
+  def change
+  end
+end
