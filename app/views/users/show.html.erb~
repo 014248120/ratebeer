@@ -15,7 +15,9 @@
   <% if @user.ratings.empty? %>
     <%= @user.username %> has not given any ratings!
   <% else %>
-    Has <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %>
+    Has <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %><br>
+    Favorite style: <%= @user.favorite_style %><br>
+    Favorite brewery: <%= @user.favorite_brewery %>
 </p>
 
     <h2>List of ratings</h2>
@@ -28,7 +30,7 @@
         <% end %></li>
       <% end %>
     </ul>
-  <% end %>
+  <% end %><br />
 
 <% if current_user && current_user.id == @user.id %> 
   <%= link_to 'Edit', edit_user_path(@user) %>

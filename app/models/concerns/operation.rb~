@@ -1,4 +1,5 @@
 module Operation
+  extend ActiveSupport::Concern
 
   def average_rating
     if self.ratings.count == 0
