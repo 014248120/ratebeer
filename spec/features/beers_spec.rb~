@@ -1,9 +1,14 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "Beer" do
 
   describe "new beer" do
     before :each do
+      FactoryGirl.create(:user)
+      sign_in(username:"Pekka", password:"Foobar1")
+      save_and_open_page
       visit new_beer_path
     end
 
@@ -15,9 +20,8 @@ describe "Beer" do
     end
 
     it "with improper name is not saved" do
-      
+      click_button('Create Beer')
+      expect(page).to have_content 'Name can\'t be blank'
     end
   end
-
-
 end

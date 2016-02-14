@@ -19,7 +19,7 @@
       <tr>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.style %></td>
-        <td><% if !brewery.nil %>
+        <td><% if !brewery.nil? %>
               <%= link_to brewery.name, brewery %>
             <% end %></td>
         <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
@@ -31,5 +31,5 @@
 
 <br>
 
-<%= link_to 'New Beer', new_beer_path %><br>
+<%= link_to ('New Beer', new_beer_path) if current_user %><br>
 <%= link_to 'List of Breweries', breweries_path %>
