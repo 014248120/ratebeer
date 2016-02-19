@@ -17,8 +17,8 @@
     <% if current_user %>
       <%= link_to User.find(session[:user_id]).username, User.find(session[:user_id]) %>
 
-      <% if current_user.beer_clubs.first %>
-        <%= link_to current_user.beer_clubs.first.name, current_user.beer_clubs.first %>
+      <% if current_user.beer_club %>
+        <%= link_to current_user.beer_club.name, current_user.beer_club %>
       <% else %>
         <%= link_to 'join a club', new_membership_path %>
       <% end %>

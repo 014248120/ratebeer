@@ -1,0 +1,3 @@
+<p id="notice"><%= notice %></p>
+
+<iframe src=<%= @place.blogmap %>></iframe>

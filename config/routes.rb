@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   resources :beers
   resources :breweries
   resource :session, only: [:new, :create, :destroy]
+  resources :places, only:[:index, :show]
 
   root 'breweries#index'
   get 'kaik_mailman_oluet', to: 'beers#index'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
-  #get 'ratings', to: 'ratings#index'
-  #get 'ratings/new', to:'ratings#new'
-  #post 'ratings', to: 'ratings#create'
+  get 'places', to: 'places#index'
+  post 'places', to:'places#search'
 
 
   resources :ratings, only: [:index, :new, :create, :destroy]

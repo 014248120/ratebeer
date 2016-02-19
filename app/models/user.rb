@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
     rated_breweries.sort_by { |b| average_rating_for_brewery(b) }.reverse.first
   end
 
+
 #HELPER METODIT
   def rated_styles
     styles = ratings.map { |r| r.beer.style }
