@@ -61,7 +61,7 @@ class MembershipsController < ApplicationController
     club = @membership.beer_club.name
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: 'Membership in ' + club + ' beerclub ended.'}
+      format.html { redirect_to :back, notice: 'Membership in ' + club + ' beerclub ended.'}
       format.json { head :no_content }
     end
   end

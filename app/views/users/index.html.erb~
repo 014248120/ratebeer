@@ -14,7 +14,6 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
