@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <h1>
@@ -31,7 +30,5 @@
     <% end %>
   <% end %>
 
-  <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
+  <%= edit_and_destroy_buttons(@beer_club) %>
 <% end %>
-
-<%= link_to 'Back', beer_clubs_path %>

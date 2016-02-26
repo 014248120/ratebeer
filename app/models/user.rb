@@ -38,6 +38,15 @@ class User < ActiveRecord::Base
     rated_breweries.sort_by { |b| average_rating_for_brewery(b) }.reverse.first
   end
 
+  def self.most_active n
+    raters = User.all.select{ |u| u.ratings.count>0 }
+    sorted = raters.sort_by { |u| -(u.ratings.count)||0}
+    sorted.first(n)
+  end
+
+  def frozen?
+    banned==true
+  end
 
 #HELPER METODIT
   def rated_styles

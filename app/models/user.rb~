@@ -38,9 +38,14 @@ class User < ActiveRecord::Base
     rated_breweries.sort_by { |b| average_rating_for_brewery(b) }.reverse.first
   end
 
-  def is_a_member_of? beer_club
-    if self.membership.nil? return nil
-    self.membership.beer_club == beer_club
+  def self.most_active n
+    raters = User.all.select{ |u| u.ratings.count>0 }
+    sorted = raters.sort_by { |u| -(u.ratings.count)||0}
+    sorted.first(n)
+  end
+
+  def frozen?
+    this.banned==true
   end
 
 #HELPER METODIT

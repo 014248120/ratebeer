@@ -15,6 +15,7 @@ class BeerClubsController < ApplicationController
     else 
       @membership = Membership.new
       @membership.beer_club = @beer_club
+    end
   end
 
   # GET /beer_clubs/new

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_that_admin, only: [:toggle_banned]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -21,12 +22,20 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def toggle_banned
+    user = User.find(params[:id])
+    user.update_attribute :banned, (not user.banned)
+    new_status = user.banned? ? "frozen" : "not frozen"
+
+    redirect_to :back, notice:"User status changed to #{new_status}"
+  end
+
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
+  respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }

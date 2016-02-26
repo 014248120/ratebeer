@@ -20,7 +20,7 @@
   <% if @beer.ratings.empty? %>
     Beer has not yet been rated!
   <% else %>
-    Has <%= pluralize(@beer.ratings.count, 'rating') %>, average <%= @beer.average_rating %>
+    Has <%= pluralize(@beer.ratings.count, 'rating') %>, average <%= round(@beer.average_rating) %>
   <% end %>
 </p>
 
@@ -34,5 +34,5 @@
     <%= f.submit class:"btn btn-primary"%>
   <% end %>
 
-  <%= link_to 'Edit', edit_beer_path(@beer) %> 
+  <%= edit_and_destroy_buttons(@beer) %> 
 <% end %>

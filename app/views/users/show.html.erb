@@ -1,8 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<h1><%= @user.username %></h1>
 <p>
-  <strong>Username:</strong>
-  <%= @user.username %>
+  <% if @user.admin  %>
+    <span class="label label-success">server admin</span>
+  <% end %>
+  <% if @user.frozen? %>
+    <span class="label label-danger">account frozen</span>
+  <% end %>
 </p>
 
 <p> 
@@ -32,7 +35,12 @@
     </ul>
   <% end %><br />
 
-<% if current_user && current_user.id == @user.id %> 
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to 'Delete user', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if current_user %> 
+  <% if current_user.id == @user.id %>
+    <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-warning' %>
+    <%= link_to 'Delete user', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+  <% elsif current_user.admin %>
+    <%= link_to "change ban status", toggle_banned_user_path(@user.id), method: :post, class:"btn btn-danger" %>
+  <% end %>
 <% end %>
+
