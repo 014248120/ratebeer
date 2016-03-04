@@ -14,12 +14,8 @@ b4 = Brewery.create name:"Joukon Poltto", year:1995, active:false
 be1 = b1.beers.create name:"Iso 3", style:"Lager"
 be2 = b1.beers.create name:"Karhu", style:"Lager"
 be3 = b1.beers.create name:"Tuplahumala", style:"Lager"
-b2.beers.create name:"Huvila Pale Ale", style:"Pale Ale"
-b2.beers.create name:"X Porter", style:"Porter"
-b3.beers.create name:"Hefeweizen", style:"Weizen"
-b3.beers.create name:"Helles", style:"Lager"
-be8 = b2.beers.create name:"Petolintu", style:"Pale Ale"
-be9 = b4.beers.create name:"Frankensteiner", style:"Unknown"
+be4 = b2.beers.create name:"Petolintu", style:"Pale Ale"
+be5 = b4.beers.create name:"Frankensteiner", style:"Unknown"
 
 u1 = User.create username:"Auto", password:"Sala1", password_confirmation:"Sala1", admin:true
 u2 = User.create username:"Koira", password:"Sala1", password_confirmation:"Sala1"
@@ -30,5 +26,5 @@ u1.ratings.create beer:be2, score:10
 u1.ratings.create beer:be3, score:24
 u1.ratings.create beer:be8, score:18
 u2.ratings.create beer:be1, score:30
-u2.ratings.create beer:be8, score:45
-u3.ratings.create beer:be9, score:50
+u2.ratings.create beer:be4, score:45
+u3.ratings.create beer:be5, score:50

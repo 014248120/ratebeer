@@ -31,4 +31,4 @@ u1.ratings.create beer:be3, score:24
 u1.ratings.create beer:be8, score:18
 u2.ratings.create beer:be1, score:30
 u2.ratings.create beer:be8, score:45
-u3.ratings.create beer:b9, score:50
+u3.ratings.create beer:be9, score:50
