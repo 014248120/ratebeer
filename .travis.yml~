@@ -7,7 +7,7 @@ script:
 - bundle exec rake db:test:prepare
 - bundle exec rspec -fd spec/
 env:
--APIKEY="1a97dc18501660694b7c89823415c610"
+- APIKEY="1a97dc18501660694b7c89823415c610"
 deploy:
   provider: heroku
   app: secret-reef-95014

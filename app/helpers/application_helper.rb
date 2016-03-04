@@ -14,4 +14,5 @@ module ApplicationHelper
       raw("#{edit} #{del}")
     end
   end
+
 end

@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'httparty'
+gem 'jquery-turbolinks'
+gem 'selenium-webdriver'
+gem 'rack-mini-profiler'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -55,5 +58,6 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'webmock'
+  gem 'database_cleaner'
 end
 

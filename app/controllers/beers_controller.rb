@@ -1,8 +1,11 @@
 class BeersController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list, :nglist]
   before_action :ensure_that_admin, only: [:destroy]
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
+
+  def nglist
+  end
 
   def set_breweries_and_styles_for_template
     @breweries = Brewery.all
@@ -12,7 +15,13 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    @beers = Beer.includes(:brewery).all
+
+    order = params[:order] || 'name'
+    desc = session[:desc] || false
+
+    @beers = order_helper(@beers, order, desc)
+    session[:desc] = (not desc)
   end
 
   # GET /beers/1
@@ -71,6 +80,9 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def list
   end
 
   private

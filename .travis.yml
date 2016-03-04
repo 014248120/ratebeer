@@ -11,6 +11,8 @@ env:
 deploy:
   provider: heroku
   app: secret-reef-95014
-  run: "rake db:migrate"
+  run: 
+   - "rake db:migrate"
+   - "rake db:seed"
   api_key:
     secure: OmAYDHGoYNSYvgX6kIuGMZcNIzeZEAV31LAedzvT+YKUyzVCpLoEtF13i1PoLzRy+G0M11sIJnJt9MEGmgpaaQgHGsQzJ+bUwFKRPIboBZNPFLdaE2BRgz+QhzWw7LrN8QD/998upLIPQnnBxBmEXGq64nFPKZ5A9v82y+36GvVKQ8duS2VenGt445HabaMcG3epIpTmI2jXRtGZC37/DIp6pLxX5wdiDtP45NUi9BIioR0nNYui5mPuvRCRDoD0mP6ZktVjlZnqDqgRtlyV1G5HbQZwHtsWsvR67YCMS6jX5X4Smi8nbHkAy65zIV5zok6TL9iTJYZ3v/UJsHUCTlr55WeO7mAUmgftpQ1UkzCnBJEUW6uJUXW8QbPAdj38hfGGK8tmZrjTf5N4KMSIn84+bWB3yhXNRv9QZOzc17zWjUBeAJKTZN/HZ/3TIxT3w/j5kF1ZxFfw8ckml54tJhPrEZOzHEMqsGzfrKvoEGFrKnxjqbTeF+uUEZS9k+n6F14gE0JlNer3MPu9vbAGuLFJsNRNpXPoOzZ3ZFPrOItnmmH16ztwFEUluN4BNxzyQ7SPPNF0du0xlqeDOyEM+28/eyIbX20sW3mWk29WpzCrJAZzqsIDxI9SDQFKzFvrDwrVyfaVy/IdIss/ZqieUJ7njH/Ak8/Er3UcJRBqtpA=

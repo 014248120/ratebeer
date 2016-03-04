@@ -18,4 +18,18 @@ class ApplicationController < ActionController::Base
     ensure_that_signed_in
     redirect_to :signin_path, notice:'You have to be server admin' if not current_user.admin
   end
+
+  def order_helper(list, order, desc)
+
+    sorted = case order
+      when 'name' then list.sort_by{ |obj| obj.name }
+      when 'year' then list.sort_by{ |obj| obj.year }
+      when 'style' then list.sort_by{ |obj| obj.style }
+      when 'brewery' then list.sort_by{|obj| obj.brewery.name}
+    end
+    
+    return sorted.reverse if desc
+    return sorted
+  end
+
 end

@@ -31,11 +31,11 @@ class User < ActiveRecord::Base
   end
 
   def favorite_style
-    rated_styles.sort_by { |s| average_rating_for_style(s) }.reverse.first
+    rated('styles').sort_by { |s| average_rating_for('style', s) }.reverse.first
   end
 
   def favorite_brewery
-    rated_breweries.sort_by { |b| average_rating_for_brewery(b) }.reverse.first
+    rated('breweries').sort_by { |b| average_rating_for('brewery', b) }.reverse.first
   end
 
   def self.most_active n
@@ -49,23 +49,21 @@ class User < ActiveRecord::Base
   end
 
 #HELPER METODIT
-  def rated_styles
-    styles = ratings.map { |r| r.beer.style }
-    styles.to_set
-  end
 
-  def average_rating_for_style(style)
-    arr = ratings.find_all{ |r| r.beer.style==style }
-    average(arr)
-  end
+  def rated(attribute) 
+    case attribute
+      when 'styles' then ratings.map { |r| r.beer.style }.uniq
+      when 'breweries' then ratings.map { |r| r.beer.brewery }.uniq
+      when 'beers' then ratings.map { |r| r.beer }.uniq
+    end
+  end  
 
-  def rated_breweries
-    b = ratings.map { |r| r.beer.brewery }
-    b.to_set
-  end
-
-  def average_rating_for_brewery(brewery)
-    arr = ratings.find_all{ |r| r.beer.brewery==brewery }
+  def average_rating_for(attribute, object)
+    arr = case attribute
+      when 'style' then ratings.find_all{ |r| r.beer.style==object }
+      when 'brewery' then ratings.find_all{ |r| r.beer.brewery==object }
+      when 'beer' then ratings.find_all{ |r| r.beer==object }
+    end
     average(arr)
   end
 

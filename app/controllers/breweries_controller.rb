@@ -2,13 +2,23 @@ class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_admin, only: [:destroy, :toggle_activity]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-#  before_action :authenticate
+
+  def nglist
+  end
 
   # GET /breweries
   # GET /breweries.json
   def index
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
+
+    order = params[:order] || 'name'
+    desc = session[:desc] || false
+
+    @active_breweries = order_helper(@active_breweries, order, desc)
+    @retired_breweries = order_helper(@retired_breweries, order, desc)
+
+    session[:desc] = (not desc)
   end
 
   # GET /breweries/1
