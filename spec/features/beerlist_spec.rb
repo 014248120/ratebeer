@@ -1,3 +1,4 @@
+=begin 
 require 'rails_helper'
 
 describe "Beerlist page" do
@@ -54,3 +55,4 @@ describe "Beerlist page" do
     end
 
 end
+=end
