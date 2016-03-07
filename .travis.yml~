@@ -12,6 +12,7 @@ deploy:
   provider: heroku
   app: secret-reef-95014
   run: 
+   - "rake db:reset"
    - "rake db:migrate"
    - "rake db:seed"
   api_key:
