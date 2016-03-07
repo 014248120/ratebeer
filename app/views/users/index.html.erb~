@@ -21,7 +21,7 @@
             <% if user.banned %>
               <span class="label label-danger">account frozen</span>
             <% end %></td>
-        <td> tietoa tähän </td>
+        <td> <%= user.rated('beers').count %> </td>
         <td> <%= user.ratings.count %> </td>
       </tr>
     <% end %>

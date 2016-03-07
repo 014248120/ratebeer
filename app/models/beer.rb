@@ -3,7 +3,7 @@ require 'operation'
 class Beer < ActiveRecord::Base
   include Operation
 
-  belongs_to :brewery
+  belongs_to :brewery, touch: true
   has_many :ratings, dependent: :destroy
   has_many :raters, -> { uniq }, through: :ratings, source: :user
 

@@ -24,7 +24,6 @@ u3 = User.create username:"Jalka", password:"Sala1", password_confirmation:"Sala
 u1.ratings.create beer:be1, score:20
 u1.ratings.create beer:be2, score:10
 u1.ratings.create beer:be3, score:24
-u1.ratings.create beer:be8, score:18
 u2.ratings.create beer:be1, score:30
 u2.ratings.create beer:be4, score:45
 u3.ratings.create beer:be5, score:50

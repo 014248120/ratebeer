@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
 
   def order_helper(list, order, desc)
 
-	byebug
     sorted = case order
       when 'name' then list.sort_by{ |obj| obj.name }
       when 'year' then list.sort_by{ |obj| obj.year }

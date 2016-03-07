@@ -5,29 +5,23 @@
     <div class="row">
       <div class="col-xs-8 col-sm-6">
         <h2>Best beers</h2>
-        <%= render 'list_best', list:Beer.top(3) %>
+        <%= render 'list_best', list:@top_beers %>
       </div>
       <div class="col-xs-4 col-sm-6">
         <h2>Best breweries</h2>
-        <%= render 'list_best', list:Brewery.top(3) %>
+        <%= render 'list_best', list:@top_breweries %>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-4 col-sm-12">
         <h2>Most active users </h2>
-        <%= render 'list_user', list:User.most_active(3) %>
+        <%= render 'list_user', list:@most_active_users %>
       </div>
     </div>
   </div>
 </div>
-<ul>
-  <% @ratings.each do |rating| %>
-    <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
-  <% end %>
-</ul>
 
 
-
-<p> Number of ratings: <%= @ratings.count %></p>
+<p> Total number of ratings: <%= @ratings.count %></p>
 
 <%= link_to('New Rating', new_rating_path, class:"btn btn-primary") if current_user %>

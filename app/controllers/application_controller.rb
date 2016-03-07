@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
       when 'name' then list.sort_by{ |obj| obj.name }
       when 'year' then list.sort_by{ |obj| obj.year }
       when 'style' then list.sort_by{ |obj| obj.style }
-      when 'brewery' then list.sort_by{|obj| obj.brewery.name}
+      when 'brewery' then list.sort_by{ |obj| obj.brewery.name}
     end
     
     return sorted.reverse if desc

@@ -1,7 +1,13 @@
 class BreweriesController < ApplicationController
+  before_action :skip_if_cached, only: [:index]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_admin, only: [:destroy, :toggle_activity]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "brewerylist-#{@order}" )
+  end
 
   def nglist
   end
@@ -13,7 +19,7 @@ class BreweriesController < ApplicationController
     @retired_breweries = Brewery.retired
 
     order = params[:order] || 'name'
-    asc = session[:desc] || false
+    desc = session[:desc] || false
 
     @active_breweries = order_helper(@active_breweries, order, desc)
     @retired_breweries = order_helper(@retired_breweries, order, desc)

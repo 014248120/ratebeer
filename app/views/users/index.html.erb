@@ -6,7 +6,6 @@
     <tr>
       <th>Username</th>
       <th colspan="1"></th>
-      <th> rated beers </th>
       <th> total ratings </th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
             <% if user.banned %>
               <span class="label label-danger">account frozen</span>
             <% end %></td>
-        <td> <%= user.rated('beers').count %> </td>
         <td> <%= user.ratings.count %> </td>
       </tr>
     <% end %>

@@ -26,6 +26,7 @@ gem 'bootstrap-sass'
 gem 'httparty'
 gem 'jquery-turbolinks'
 gem 'selenium-webdriver'
+gem 'rack-mini-profiler'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

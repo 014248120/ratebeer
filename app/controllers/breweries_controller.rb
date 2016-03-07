@@ -1,7 +1,13 @@
 class BreweriesController < ApplicationController
+  before_action :skip_if_cached, only: [:index]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_admin, only: [:destroy, :toggle_activity]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "brewerylist-#{@order}" )
+  end
 
   def nglist
   end
@@ -28,6 +34,7 @@ class BreweriesController < ApplicationController
 
   # GET /breweries/new
   def new
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
     @brewery = Brewery.new
   end
 
@@ -62,6 +69,7 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -76,6 +84,7 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
     @brewery.destroy
     respond_to do |format|
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }

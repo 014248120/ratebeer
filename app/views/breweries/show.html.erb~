@@ -28,5 +28,7 @@
     Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= round(@brewery.average_rating) %>
   <% end %>
 </p>
-<%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class:"btn btn-primary" %>
+<% if current_user and current_user.admin %>
+  <%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class:"btn btn-primary" %>
+<% end %>
 <%= edit_and_destroy_buttons(@brewery) %>

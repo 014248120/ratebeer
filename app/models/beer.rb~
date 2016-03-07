@@ -15,7 +15,8 @@ class Beer < ActiveRecord::Base
   end
 
   def self.top(n)
-    sorted = Beer.all.sort_by{ |b| -(b.average_rating)||0 }
+    rated = Beer.all.select{ |b| b.ratings.count>0 }
+    sorted = rated.sort_by{ |b| -(b.average_rating)||0 }
     sorted.first(n)
   end
 end
